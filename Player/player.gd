@@ -5,7 +5,17 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
 
+var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
+
+var _look := Vector2.ZERO
+
+@export var mouse_sensitivity: float = 0.0075
+
+func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
 func _physics_process(delta: float) -> void:
+	frame_camera_rotation()
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -26,3 +36,17 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+	
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		if event is InputEventMouseMotion:
+			_look = -event.relative * mouse_sensitivity
+			print(_look)
+			
+			
+func frame_camera_rotation() -> void:
+	$SpringArm3D.rotate_y(_look.x)
+	_look = Vector2.ZERO
+
