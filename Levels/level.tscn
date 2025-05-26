@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bj1vqq221h81e"]
+[gd_scene load_steps=7 format=3 uid="uid://bj1vqq221h81e"]
 
 [ext_resource type="PackedScene" uid="uid://lw8po7l0fp78" path="res://Player/player.tscn" id="1_s41d2"]
+[ext_resource type="PackedScene" uid="uid://b1gg350m4d5q1" path="res://Assets/3D_Assets/Environment/Rock_Cliff_Env_03.glb" id="2_gtnvv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_04fhe"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -15,6 +16,9 @@ sky = SubResource("Sky_aax2q")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wav5q"]
+albedo_color = Color(0.321569, 0.317647, 0.117647, 1)
+
 [node name="Level" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -24,10 +28,63 @@ environment = SubResource("Environment_5qy6j")
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
 shadow_enabled = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="Floor" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 use_collision = true
 size = Vector3(50, 1, 50)
+material = SubResource("StandardMaterial3D_wav5q")
 
 [node name="Player" parent="." instance=ExtResource("1_s41d2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="MapBoundary" type="Node3D" parent="."]
+transform = Transform3D(1.14077, 0, 0, 0, 0.822751, 0, 0, 0, 0.900232, 0, -0.881037, 14.8534)
+
+[node name="Rock_Cliff_Env_032" parent="MapBoundary" instance=ExtResource("2_gtnvv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.69888, 3.71702, 11.0774)
+
+[node name="Rock_Cliff_Env_033" parent="MapBoundary/Rock_Cliff_Env_032" instance=ExtResource("2_gtnvv")]
+transform = Transform3D(0.823294, 0, 0, 0, 0.775609, 0, 0, 0, 1.01794, 15.7286, -0.92435, 0.134378)
+
+[node name="Rock_Cliff_Env_034" parent="MapBoundary/Rock_Cliff_Env_032" instance=ExtResource("2_gtnvv")]
+transform = Transform3D(0.724054, 0, 0, 0, 0.775609, 0, 0, 0, 1.01794, -14.4618, -0.994388, 0.293419)
+
+[node name="Rock_Cliff_Env_033" parent="MapBoundary" instance=ExtResource("2_gtnvv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.69888, 3.71702, -42.1384)
+
+[node name="Rock_Cliff_Env_033" parent="MapBoundary/Rock_Cliff_Env_033" instance=ExtResource("2_gtnvv")]
+transform = Transform3D(0.823294, 0, 0, 0, 0.775609, 0, 0, 0, 1.01794, 15.7286, -0.92435, 0.134378)
+
+[node name="Rock_Cliff_Env_034" parent="MapBoundary/Rock_Cliff_Env_033" instance=ExtResource("2_gtnvv")]
+transform = Transform3D(0.724054, 0, 0, 0, 0.775609, 0, 0, 0, 1.01794, -14.4618, -0.994388, 0.293419)
+
+[node name="Rock_Cliff_Env_034" parent="MapBoundary" instance=ExtResource("2_gtnvv")]
+transform = Transform3D(-0.0533193, 0, 1.0078, 0, 1, 0, -1.15026, 0, -0.0467159, 23.6199, 3.71702, -16.9593)
+
+[node name="Rock_Cliff_Env_033" parent="MapBoundary/Rock_Cliff_Env_034" instance=ExtResource("2_gtnvv")]
+transform = Transform3D(0.823294, 0, 0, 0, 0.775609, 0, 0, 0, 1.01794, 15.7286, -0.92435, 0.134378)
+
+[node name="Rock_Cliff_Env_034" parent="MapBoundary/Rock_Cliff_Env_034" instance=ExtResource("2_gtnvv")]
+transform = Transform3D(0.724054, 0, 0, 0, 0.775609, 0, 0, 0, 1.01794, -14.4618, -0.994388, 0.293419)
+
+[node name="Rock_Cliff_Env_035" parent="MapBoundary" instance=ExtResource("2_gtnvv")]
+transform = Transform3D(-0.0533193, 0, 1.0078, 0, 1, 0, -1.15026, 0, -0.0467159, -16.7849, 3.71702, -16.9593)
+
+[node name="Rock_Cliff_Env_033" parent="MapBoundary/Rock_Cliff_Env_035" instance=ExtResource("2_gtnvv")]
+transform = Transform3D(0.823294, 0, 0, 0, 0.775609, 0, 0, 0, 1.01794, 15.7286, -0.92435, 0.134378)
+
+[node name="Rock_Cliff_Env_034" parent="MapBoundary/Rock_Cliff_Env_035" instance=ExtResource("2_gtnvv")]
+transform = Transform3D(0.724054, 0, 0, 0, 0.775609, 0, 0, 0, 1.01794, -14.4618, -0.994388, 0.293419)
+
+[editable path="MapBoundary/Rock_Cliff_Env_032"]
+[editable path="MapBoundary/Rock_Cliff_Env_032/Rock_Cliff_Env_033"]
+[editable path="MapBoundary/Rock_Cliff_Env_032/Rock_Cliff_Env_034"]
+[editable path="MapBoundary/Rock_Cliff_Env_033"]
+[editable path="MapBoundary/Rock_Cliff_Env_033/Rock_Cliff_Env_033"]
+[editable path="MapBoundary/Rock_Cliff_Env_033/Rock_Cliff_Env_034"]
+[editable path="MapBoundary/Rock_Cliff_Env_034"]
+[editable path="MapBoundary/Rock_Cliff_Env_034/Rock_Cliff_Env_033"]
+[editable path="MapBoundary/Rock_Cliff_Env_034/Rock_Cliff_Env_034"]
+[editable path="MapBoundary/Rock_Cliff_Env_035"]
+[editable path="MapBoundary/Rock_Cliff_Env_035/Rock_Cliff_Env_033"]
+[editable path="MapBoundary/Rock_Cliff_Env_035/Rock_Cliff_Env_034"]
