@@ -1,6 +1,5 @@
 extends CharacterBody3D
 
-
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
@@ -50,6 +49,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		if event is InputEventMouseMotion:
 			_look = -event.relative * mouse_sensitivity
+	if rig.is_idle():
+		if event.is_action_pressed("click"):
+			slash_attack()
 
 func get_movement_direction() -> Vector3:
 	# Get the input direction and handle the movement/deceleration.
@@ -75,3 +77,6 @@ func look_toward_direction(direction: Vector3, delta: float) -> void:
 		target_transform,
 		1.0 - exp(-animation_decay * delta)
 	)
+	
+func slash_attack() -> void:
+	rig.travel("Slash")
