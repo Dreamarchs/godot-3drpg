@@ -20,6 +20,7 @@ var _attack_direction := Vector3.ZERO #Stores direction when player attacks
 @onready var vertical_pivot: Node3D = $HorizontalPivot/VerticalPivot
 @onready var rig_pivot: Node3D = $RigPivot
 @onready var rig: Node3D = $RigPivot/CharacterRig
+@onready var attack_cast: RayCast3D = %AttackCast
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -31,7 +32,7 @@ func _physics_process(delta: float) -> void:
 	handle_idle_physics_frame(delta, direction)
 	handle_slashing_physics_frame(delta)
 	if not is_on_floor():
-		velocity -= get_gravity() * delta
+		velocity += get_gravity() * delta
 	move_and_slide()
 	
 func _unhandled_input(event: InputEvent) -> void:
@@ -74,6 +75,7 @@ func slash_attack() -> void:
 	_attack_direction = get_movement_direction()
 	if _attack_direction.is_zero_approx():
 		_attack_direction = rig.global_basis * Vector3(0, 0, 1)
+	attack_cast.clear_exceptions()
 		
 func handle_slashing_physics_frame(delta: float) -> void:
 	if not rig.is_slashing():
@@ -81,6 +83,7 @@ func handle_slashing_physics_frame(delta: float) -> void:
 	velocity.x = _attack_direction.x * attack_move_speed
 	velocity.z = _attack_direction.z * attack_move_speed
 	look_toward_direction(_attack_direction, delta)
+	attack_cast.deal_damage()
 	
 func handle_idle_physics_frame(delta: float, direction: Vector3) -> void:
 	if not rig.is_idle():
