@@ -1,8 +1,9 @@
 extends CharacterBody3D
+class_name Player
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
-
+const DECAY := 8.0
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -21,16 +22,21 @@ var _attack_direction := Vector3.ZERO #Stores direction when player attacks
 @onready var rig_pivot: Node3D = $RigPivot
 @onready var rig: Node3D = $RigPivot/CharacterRig
 @onready var attack_cast: RayCast3D = %AttackCast
+@onready var health_component: HealthComponent = $HealthComponent
+@onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
+@onready var area_attack: ShapeCast3D = $RigPivot/AreaAttack
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
+	health_component.update_max_health(30.0)
+	
 func _physics_process(delta: float) -> void:
 	frame_camera_rotation()
 	var direction := get_movement_direction()
 	rig.update_animation_tree(direction)
 	handle_idle_physics_frame(delta, direction)
 	handle_slashing_physics_frame(delta)
+	handle_overhead_physics_frame()
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	move_and_slide()
@@ -44,6 +50,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if rig.is_idle():
 		if event.is_action_pressed("click"):
 			slash_attack()
+		if event.is_action_pressed("right_click"):
+			overhead_attack()
+			
 
 func get_movement_direction() -> Vector3:
 	# Get the input direction and handle the movement/deceleration.
@@ -76,7 +85,10 @@ func slash_attack() -> void:
 	if _attack_direction.is_zero_approx():
 		_attack_direction = rig.global_basis * Vector3(0, 0, 1)
 	attack_cast.clear_exceptions()
-		
+	
+func overhead_attack() -> void:
+	rig.travel("Overhead")
+	
 func handle_slashing_physics_frame(delta: float) -> void:
 	if not rig.is_slashing():
 		return
@@ -86,14 +98,39 @@ func handle_slashing_physics_frame(delta: float) -> void:
 	attack_cast.deal_damage()
 	
 func handle_idle_physics_frame(delta: float, direction: Vector3) -> void:
-	if not rig.is_idle():
+	if not rig.is_idle() and not rig.is_dashing():
 		return
-	# If the player is idle, we want to decelerate the movement.
+
+	velocity.x = exponential_decay(
+	velocity.x, 
+	direction.x * SPEED,
+	DECAY,
+	delta)
+	velocity.z = exponential_decay(
+	velocity.z, 
+	direction.z * SPEED,
+	DECAY,
+	delta)
+	
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
 		look_toward_direction(direction, delta)
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+
 		
+func handle_overhead_physics_frame() -> void:
+	if not rig.is_overhead():
+		return
+	velocity.x = 0.0
+	velocity.z = 0.0
+		
+
+func _on_health_component_defeat() -> void:
+	rig.travel("Defeat")
+	collision_shape_3d.disabled = true
+	set_physics_process(false)
+	
+
+func _on_rig_heavy_attack() -> void:
+	area_attack.deal_damage(50.0)
+
+func exponential_decay(a: float, b: float, decay: float, delta: float) -> float:
+	return b + (a - b) * exp(-decay * delta)

@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bj1vqq221h81e"]
+[gd_scene load_steps=8 format=3 uid="uid://bj1vqq221h81e"]
 
 [ext_resource type="PackedScene" uid="uid://lw8po7l0fp78" path="res://Player/player.tscn" id="1_s41d2"]
 [ext_resource type="PackedScene" uid="uid://b1gg350m4d5q1" path="res://Assets/3D_Assets/Environment/Rock_Cliff_Env_03.glb" id="2_gtnvv"]
+[ext_resource type="PackedScene" uid="uid://vfj5ljsw64tc" path="res://enemy.tscn" id="3_wav5q"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_04fhe"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -75,6 +76,21 @@ transform = Transform3D(0.823294, 0, 0, 0, 0.775609, 0, 0, 0, 1.01794, 15.7286, 
 
 [node name="Rock_Cliff_Env_034" parent="MapBoundary/Rock_Cliff_Env_035" instance=ExtResource("2_gtnvv")]
 transform = Transform3D(0.724054, 0, 0, 0, 0.775609, 0, 0, 0, 1.01794, -14.4618, -0.994388, 0.293419)
+
+[node name="Enemies" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="enemy" parent="Enemies" instance=ExtResource("3_wav5q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9255457, 0, 0)
+
+[node name="enemy2" parent="Enemies" instance=ExtResource("3_wav5q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.604515, 0, 0)
+
+[node name="enemy3" parent="Enemies" instance=ExtResource("3_wav5q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5346575, 0, 0)
+
+[node name="enemy4" parent="Enemies" instance=ExtResource("3_wav5q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.811108, 0, 0)
 
 [editable path="MapBoundary/Rock_Cliff_Env_032"]
 [editable path="MapBoundary/Rock_Cliff_Env_032/Rock_Cliff_Env_033"]
