@@ -8,6 +8,8 @@ class_name Enemy
 @onready var player_detector: ShapeCast3D = $CharacterRig/PlayerDetector
 @onready var area_attack: ShapeCast3D = $CharacterRig/AreaAttack
 
+@onready var player: Player = get_tree().get_first_node_in_group("Player")
+
 func _ready() -> void: 
 	rig.set_active_mesh(
 		rig.villager_meshes.pick_random()
@@ -25,6 +27,7 @@ func check_for_attacks() -> void:
 			rig.travel("Overhead")
 
 func _on_health_component_defeat() -> void:
+	player.stats.level_up()
 	rig.travel("Defeat")
 	collision_shape_3d.disabled = true
 	set_physics_process(false)
