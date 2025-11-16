@@ -1,6 +1,8 @@
 extends CharacterBody3D
 class_name Enemy 
 @export var max_health: float = 20.0
+@export var xp_value := 20
+@export var crit_rate := 0.05
 
 @onready var rig: Node3D = $CharacterRig
 @onready var health_component: HealthComponent = $HealthComponent
@@ -27,7 +29,8 @@ func check_for_attacks() -> void:
 			rig.travel("Overhead")
 
 func _on_health_component_defeat() -> void:
-	player.stats.level_up()
+#	player.stats.level_up()
+	player.stats.xp += xp_value
 	rig.travel("Defeat")
 	collision_shape_3d.disabled = true
 	set_physics_process(false)
@@ -35,5 +38,5 @@ func _on_health_component_defeat() -> void:
 
 func _on_rig_heavy_attack() -> void:
 	print("Heavy Attack Signal")
-	area_attack.deal_damage(20.0)
+	area_attack.deal_damage(20.0, crit_rate)
 	
