@@ -56,6 +56,21 @@ grow_vertical = 2
 value = 100.0
 texture_progress = ExtResource("3_r3lf1")
 
+[node name="HealthLabel" type="Label" parent="MarginContainer/InfoBar/HealthBarUnder/HealthBar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(95, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 97.0
+offset_top = -15.0
+offset_right = 192.0
+offset_bottom = -15.0
+grow_vertical = 2
+text = "10/10"
+label_settings = SubResource("LabelSettings_0jl8t")
+vertical_alignment = 1
+
 [node name="XPBar" type="TextureProgressBar" parent="MarginContainer/InfoBar/HealthBarUnder"]
 unique_name_in_owner = true
 layout_mode = 1
