@@ -7,6 +7,8 @@ const RUN_VELOCITY_THRESHOLD := 2.0
 @export var xp_value := 20
 @export var crit_rate := 0.05
 @export var enemy_speed := 5.0
+@export var shields: Array[PackedScene]
+@export var weapons: Array[PackedScene]
 
 @onready var rig: Node3D = $CharacterRig
 @onready var health_component: HealthComponent = $HealthComponent
@@ -22,9 +24,16 @@ var velocity_target := Vector3.ZERO
 
 func _ready() -> void: 
 	rig.set_active_mesh(
-		rig.villager_meshes.pick_random()
+		rig.villager_meshes.pick_random()	
+	)
+	rig.replace_shield(
+		shields.pick_random()
+	)
+	rig.replace_weapon(
+		weapons.pick_random()
 	)
 	health_component.update_max_health(max_health)
+	
 
 func _physics_process(_delta: float) -> void:
 	
@@ -55,6 +64,8 @@ func _on_health_component_defeat() -> void:
 	rig.travel("Defeat")
 	collision_shape_3d.disabled = true
 	set_physics_process(false)
+	navigation_agent_3d.target_position = global_position
+	navigation_agent_3d.velocity = Vector3.ZERO
 
 
 func _on_rig_heavy_attack() -> void:
