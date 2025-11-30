@@ -1,19 +1,30 @@
-[gd_scene load_steps=9 format=3 uid="uid://bj1vqq221h81e"]
+[gd_scene load_steps=19 format=3 uid="uid://bj1vqq221h81e"]
 
 [ext_resource type="PackedScene" uid="uid://lw8po7l0fp78" path="res://Player/player.tscn" id="1_s41d2"]
+[ext_resource type="PackedScene" uid="uid://dpjtrxa4r8h5j" path="res://Assets/3D_Assets/Environment/Path_Stepping_Stone_Env_01.glb" id="2_eabcg"]
 [ext_resource type="PackedScene" uid="uid://b1gg350m4d5q1" path="res://Assets/3D_Assets/Environment/Rock_Cliff_Env_03.glb" id="2_gtnvv"]
+[ext_resource type="PackedScene" uid="uid://drq87nnernown" path="res://Assets/3D_Assets/Environment/Path_Gravel_Env_01.glb" id="3_dvejp"]
 [ext_resource type="PackedScene" uid="uid://vfj5ljsw64tc" path="res://enemy.tscn" id="3_wav5q"]
+[ext_resource type="PackedScene" uid="uid://bdq4jxn8kv80g" path="res://Assets/3D_Assets/Environment/Path_Cobblestone_Env_04.glb" id="4_3hgmi"]
+[ext_resource type="PackedScene" uid="uid://c8y3rmfax5cv8" path="res://Assets/3D_Assets/Environment/Stone_Wall_Bldg_04.glb" id="4_ecu0b"]
+[ext_resource type="PackedScene" uid="uid://5h0u157h1svg" path="res://Assets/3D_Assets/Environment/Large_Mountain_Env_02.glb" id="5_dvejp"]
+[ext_resource type="PackedScene" uid="uid://box4sd2mkwed7" path="res://Assets/3D_Assets/Environment/Wall_Stone_Gate_Bldg_01.glb" id="5_t2u7g"]
+[ext_resource type="PackedScene" uid="uid://c1t3xcetk7frc" path="res://Assets/3D_Assets/Environment/Vine_Vege_01.glb" id="6_vx8ih"]
+[ext_resource type="PackedScene" uid="uid://cw6oseq76yaey" path="res://Assets/3D_Assets/Environment/Turret_Square_Bldg_02.glb" id="7_ugh17"]
+[ext_resource type="PackedScene" uid="uid://ohcrgbgjfv83" path="res://Assets/3D_Assets/Environment/House_Modular_01.glb" id="8_eabcg"]
+[ext_resource type="VoxelGIData" uid="uid://ccktq6u4oivg0" path="res://Levels/GIDaa/level.VoxelGI_data.res" id="9_t2u7g"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_wav5q"]
-vertices = PackedVector3Array(-16, 0.5, 13.5, -16.5, 0.5, 13.75, -16.5, 0.5, 19.5, -15.75, 0.5, 12.25, 19.5, 0.5, 19.5, -16.5, 0.5, -19.5, -16.5, 0.5, 11.5, 19.5, 0.5, -19.5)
-polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(0, 3, 2), PackedInt32Array(2, 3, 4), PackedInt32Array(6, 5, 3), PackedInt32Array(3, 5, 7), PackedInt32Array(3, 7, 4)]
+vertices = PackedVector3Array(-24.64, 0.5, -23.595, -24.64, 0.75, 22.405, 24.61, 0.5, 22.405, 24.61, 0.5, -23.595)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 geometry_parsed_geometry_type = 1
-filter_baking_aabb = AABB(-17, 0, -20, 37, 1, 40)
+filter_baking_aabb = AABB(-30.39, 0, -24.095, 69.445, 0.5, 47.06)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wav5q"]
 albedo_color = Color(0.321569, 0.317647, 0.117647, 1)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_04fhe"]
+sky_top_color = Color(0.156, 0.34840006, 0.6, 1)
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 
@@ -25,6 +36,9 @@ background_mode = 2
 sky = SubResource("Sky_aax2q")
 tonemap_mode = 2
 glow_enabled = true
+glow_strength = 0.2
+glow_bloom = 0.5
+glow_blend_mode = 0
 
 [node name="Level" type="Node3D"]
 
@@ -41,15 +55,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.69888, 3.71702, 11.0774)
 transform = Transform3D(0.823294, 0, 0, 0, 0.775609, 0, 0, 0, 1.01794, 15.7286, -0.92435, 0.134378)
 
 [node name="Rock_Cliff_Env_034" parent="NavigationRegion3D/MapBoundary/Rock_Cliff_Env_032" instance=ExtResource("2_gtnvv")]
-transform = Transform3D(0.724054, 0, 0, 0, 0.775609, 0, 0, 0, 1.01794, -14.4618, -0.994388, 0.293419)
-
-[node name="Rock_Cliff_Env_033" parent="NavigationRegion3D/MapBoundary" instance=ExtResource("2_gtnvv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.69888, 3.71702, -42.1384)
-
-[node name="Rock_Cliff_Env_033" parent="NavigationRegion3D/MapBoundary/Rock_Cliff_Env_033" instance=ExtResource("2_gtnvv")]
-transform = Transform3D(0.823294, 0, 0, 0, 0.775609, 0, 0, 0, 1.01794, 15.7286, -0.92435, 0.134378)
-
-[node name="Rock_Cliff_Env_034" parent="NavigationRegion3D/MapBoundary/Rock_Cliff_Env_033" instance=ExtResource("2_gtnvv")]
 transform = Transform3D(0.724054, 0, 0, 0, 0.775609, 0, 0, 0, 1.01794, -14.4618, -0.994388, 0.293419)
 
 [node name="Rock_Cliff_Env_034" parent="NavigationRegion3D/MapBoundary" instance=ExtResource("2_gtnvv")]
@@ -76,6 +81,49 @@ use_collision = true
 size = Vector3(50, 1, 50)
 material = SubResource("StandardMaterial3D_wav5q")
 
+[node name="FloorDecorations" type="Node3D" parent="NavigationRegion3D/Floor"]
+
+[node name="Path_Stepping_Stone_Env_012" parent="NavigationRegion3D/Floor/FloorDecorations" instance=ExtResource("2_eabcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1445224, 0.45, -10.476448)
+
+[node name="Path_Stepping_Stone_Env_013" parent="NavigationRegion3D/Floor/FloorDecorations" instance=ExtResource("2_eabcg")]
+transform = Transform3D(-0.9671259, 0, 0.25429818, 0, 1, 0, -0.25429818, 0, -0.9671259, 7.2824345, 0.45, -3.9500265)
+
+[node name="Path_Stepping_Stone_Env_014" parent="NavigationRegion3D/Floor/FloorDecorations" instance=ExtResource("2_eabcg")]
+transform = Transform3D(-0.15945038, 0, 0.987206, 0, 1, 0, -0.987206, 0, -0.15945038, 6.5933933, 0.45, 4.7460227)
+
+[node name="Path_Stepping_Stone_Env_016" parent="NavigationRegion3D/Floor/FloorDecorations" instance=ExtResource("2_eabcg")]
+transform = Transform3D(0.18261304, 0, -0.9831848, 0, 1, 0, 0.9831848, 0, 0.18261304, -0.6714802, 0.45, 10.801388)
+
+[node name="Path_Stepping_Stone_Env_017" parent="NavigationRegion3D/Floor/FloorDecorations" instance=ExtResource("2_eabcg")]
+transform = Transform3D(0.8484156, 0, -0.14301625, 0, 1, 0, 0.18362002, 0, 0.66080594, -1.8217072, 0.45, 17.749851)
+
+[node name="Path_Stepping_Stone_Env_015" parent="NavigationRegion3D/Floor/FloorDecorations" instance=ExtResource("2_eabcg")]
+transform = Transform3D(-0.9994018, 0, -0.034585476, 0, 1, 0, 0.034585476, 0, -0.9994018, 14.252326, 0.45, 4.7460227)
+
+[node name="Path_Stepping_Stone_Env_018" parent="NavigationRegion3D/Floor/FloorDecorations" instance=ExtResource("2_eabcg")]
+transform = Transform3D(0.99999636, 0, 0.0027225725, 0, 1, 0, -0.0027225725, 0, 0.99999636, 19.245464, 0.45, 12.8595085)
+
+[node name="Path_Gravel_Env_012" parent="NavigationRegion3D/Floor/FloorDecorations/Path_Stepping_Stone_Env_018" instance=ExtResource("3_dvejp")]
+transform = Transform3D(1.3493767, 0, 0, 0, 1, 0, 2.3283064e-10, 0, 1.6253254, -6.820038, 0.117857516, -26.960155)
+
+[node name="Path_Cobblestone_Env_042" parent="NavigationRegion3D/Floor/FloorDecorations/Path_Stepping_Stone_Env_018/Path_Gravel_Env_012" instance=ExtResource("4_3hgmi")]
+transform = Transform3D(1.3557644, 0, 1.3969839e-09, 0, 7.6951, 0, -9.313226e-10, 0, 1.239339, -14.692275, 0.21261597, -0.5809574)
+
+[node name="Horizon" type="Node3D" parent="NavigationRegion3D"]
+
+[node name="Large_Mountain_Env_022" parent="NavigationRegion3D/Horizon" instance=ExtResource("5_dvejp")]
+transform = Transform3D(-0.31207412, 0, -0.8445333, 0, 0.88738996, 0, 0.61892855, 0, -0.4258278, -74.20796, 0, 0)
+
+[node name="Large_Mountain_Env_025" parent="NavigationRegion3D/Horizon" instance=ExtResource("5_dvejp")]
+transform = Transform3D(-0.12972236, 0, -0.47465387, 0, 0.88738996, 0, 1.3687484, 0, -0.044985056, 133.021, 0, 116.21195)
+
+[node name="Large_Mountain_Env_024" parent="NavigationRegion3D/Horizon" instance=ExtResource("5_dvejp")]
+transform = Transform3D(-1.234152, 0, -0.40136644, 0, 1.7546474, 0, 0.19725929, 0, -2.5111468, -75.44855, 0, -159.67143)
+
+[node name="Large_Mountain_Env_023" parent="NavigationRegion3D/Horizon" instance=ExtResource("5_dvejp")]
+transform = Transform3D(0.011395633, 0, 0.9456871, 0, 0.88738996, 0, -0.6930605, 0, 0.0155493915, -123.12351, 0, -4.5387573)
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_5qy6j")
 
@@ -101,12 +149,64 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5346575, 0, 0)
 [node name="enemy4" parent="Enemies" instance=ExtResource("3_wav5q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.811108, 0, 0)
 
+[node name="Castle" type="Node3D" parent="."]
+
+[node name="Stone_Wall_Bldg_042" parent="Castle" instance=ExtResource("4_ecu0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -22.195314)
+
+[node name="Stone_Wall_Bldg_043" parent="Castle" instance=ExtResource("4_ecu0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, -22.195314)
+
+[node name="Stone_Wall_Bldg_044" parent="Castle" instance=ExtResource("4_ecu0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.966663, 0, -22.195314)
+
+[node name="Stone_Wall_Bldg_045" parent="Castle" instance=ExtResource("4_ecu0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.966663, 0, -22.195314)
+
+[node name="Wall_Stone_Gate_Bldg_012" parent="Castle" instance=ExtResource("5_t2u7g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -21.88976)
+
+[node name="Vine_Vege_013" parent="Castle/Wall_Stone_Gate_Bldg_012" instance=ExtResource("6_vx8ih")]
+transform = Transform3D(0.64458245, 0, 0, 0, 0.8526972, 0, 0, 0, 1, -21.384237, 1.6129866, 2.365532)
+
+[node name="Turret_Square_Bldg_022" parent="Castle/Wall_Stone_Gate_Bldg_012" instance=ExtResource("7_ugh17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.732456, -0.545453, 0.055217743)
+
+[node name="Vine_Vege_012" parent="Castle/Wall_Stone_Gate_Bldg_012/Turret_Square_Bldg_022" instance=ExtResource("6_vx8ih")]
+transform = Transform3D(0.70285517, 0, 0, 0, 0.80170834, 0, 0, 0, 1, 0, 1.6817389, 2.109806)
+
+[node name="Vine_Vege_013" parent="Castle/Wall_Stone_Gate_Bldg_012/Turret_Square_Bldg_022" instance=ExtResource("6_vx8ih")]
+transform = Transform3D(0.40435088, -0.30187988, 0, 0.2848262, 0.428561, 0, 0, 0, 1, 15.412963, 2.1708167, 1.0833683)
+
+[node name="Vine_Vege_014" parent="Castle/Wall_Stone_Gate_Bldg_012/Turret_Square_Bldg_022" instance=ExtResource("6_vx8ih")]
+transform = Transform3D(0.49445218, 0.012661204, 0, -0.011945963, 0.5240569, 0, 0, 0, 1, 25.230442, 2.1708167, 1.3528004)
+
+[node name="Turret_Square_Bldg_025" parent="Castle/Wall_Stone_Gate_Bldg_012" instance=ExtResource("7_ugh17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.809582, -2.7242641, -10.10631)
+
+[node name="House_Modular_012" parent="Castle/Wall_Stone_Gate_Bldg_012/Turret_Square_Bldg_025" instance=ExtResource("8_eabcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.058582, 1.4432249, 6.0698357)
+
+[node name="House_Modular_013" parent="Castle/Wall_Stone_Gate_Bldg_012/Turret_Square_Bldg_025" instance=ExtResource("8_eabcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.86045, 0.38090706, -0.65464973)
+
+[node name="Turret_Square_Bldg_026" parent="Castle/Wall_Stone_Gate_Bldg_012" instance=ExtResource("7_ugh17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.6099415, 2.997841, -16.868439)
+
+[node name="Turret_Square_Bldg_023" parent="Castle/Wall_Stone_Gate_Bldg_012" instance=ExtResource("7_ugh17")]
+transform = Transform3D(0.9999646, -0.008412387, 0, 0.008412387, 0.9999646, 0, 0, 0, 1, -21.56479, 0, 0.3237095)
+
+[node name="Turret_Square_Bldg_024" parent="Castle/Wall_Stone_Gate_Bldg_012" instance=ExtResource("7_ugh17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.64268, 0, 0.11470795)
+
+[node name="VoxelGI" type="VoxelGI" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.005742, 0)
+size = Vector3(60, 25.843414, 120)
+data = ExtResource("9_t2u7g")
+
 [editable path="NavigationRegion3D/MapBoundary/Rock_Cliff_Env_032"]
 [editable path="NavigationRegion3D/MapBoundary/Rock_Cliff_Env_032/Rock_Cliff_Env_033"]
 [editable path="NavigationRegion3D/MapBoundary/Rock_Cliff_Env_032/Rock_Cliff_Env_034"]
-[editable path="NavigationRegion3D/MapBoundary/Rock_Cliff_Env_033"]
-[editable path="NavigationRegion3D/MapBoundary/Rock_Cliff_Env_033/Rock_Cliff_Env_033"]
-[editable path="NavigationRegion3D/MapBoundary/Rock_Cliff_Env_033/Rock_Cliff_Env_034"]
 [editable path="NavigationRegion3D/MapBoundary/Rock_Cliff_Env_034"]
 [editable path="NavigationRegion3D/MapBoundary/Rock_Cliff_Env_034/Rock_Cliff_Env_033"]
 [editable path="NavigationRegion3D/MapBoundary/Rock_Cliff_Env_034/Rock_Cliff_Env_034"]
