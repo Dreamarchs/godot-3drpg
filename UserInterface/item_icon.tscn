@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://ctbep2ks2a8if"]
+[gd_scene load_steps=10 format=3 uid="uid://ctbep2ks2a8if"]
 
 [ext_resource type="Texture2D" uid="uid://bwkn4h56as8o" path="res://Assets/UIAssets/Icons/spell_slot_empty.png" id="1_0yvv4"]
 [ext_resource type="Texture2D" uid="uid://7hvvmyfbfr2" path="res://Assets/UIAssets/Icons/ItemPress.png" id="2_vbumt"]
 [ext_resource type="Texture2D" uid="uid://bemjpvhsaco2l" path="res://Assets/UIAssets/Icons/ItemHover.png" id="3_dgms3"]
 [ext_resource type="Texture2D" uid="uid://bqy05al6mt1ec" path="res://Assets/UIAssets/Icons/armor_icon.png" id="4_ba32y"]
+[ext_resource type="Script" uid="uid://kwt5f3i2pcb7" path="res://UserInterface/item_icon.gd" id="4_vbumt"]
 [ext_resource type="FontFile" uid="uid://b1muyfamwkna7" path="res://Assets/Fonts/LibreCaslonText-Bold.ttf" id="5_ufu5g"]
 [ext_resource type="FontFile" uid="uid://bmdgba7ltgdfd" path="res://Assets/Fonts/LibreCaslonText-Italic.ttf" id="6_perhd"]
 
@@ -29,6 +30,7 @@ texture_pressed = ExtResource("2_vbumt")
 texture_hover = ExtResource("3_dgms3")
 ignore_texture_size = true
 stretch_mode = 0
+script = ExtResource("4_vbumt")
 
 [node name="TypeIcon" type="TextureRect" parent="."]
 layout_mode = 1
@@ -73,3 +75,5 @@ text = "Item Name
 label_settings = SubResource("LabelSettings_vr876")
 horizontal_alignment = 1
 vertical_alignment = 2
+
+[connection signal="gui_input" from="MarginContainer/ItemLabel" to="." method="_on_item_label_gui_input"]
