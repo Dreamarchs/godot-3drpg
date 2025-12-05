@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bj1vqq221h81e"]
+[gd_scene load_steps=22 format=3 uid="uid://bj1vqq221h81e"]
 
 [ext_resource type="PackedScene" uid="uid://lw8po7l0fp78" path="res://Player/player.tscn" id="1_s41d2"]
 [ext_resource type="PackedScene" uid="uid://dpjtrxa4r8h5j" path="res://Assets/3D_Assets/Environment/Path_Stepping_Stone_Env_01.glb" id="2_eabcg"]
@@ -9,9 +9,12 @@
 [ext_resource type="PackedScene" uid="uid://c8y3rmfax5cv8" path="res://Assets/3D_Assets/Environment/Stone_Wall_Bldg_04.glb" id="4_ecu0b"]
 [ext_resource type="PackedScene" uid="uid://5h0u157h1svg" path="res://Assets/3D_Assets/Environment/Large_Mountain_Env_02.glb" id="5_dvejp"]
 [ext_resource type="PackedScene" uid="uid://box4sd2mkwed7" path="res://Assets/3D_Assets/Environment/Wall_Stone_Gate_Bldg_01.glb" id="5_t2u7g"]
+[ext_resource type="PackedScene" uid="uid://dypwq0k44sh1t" path="res://Interactable/chest.tscn" id="6_3hgmi"]
 [ext_resource type="PackedScene" uid="uid://c1t3xcetk7frc" path="res://Assets/3D_Assets/Environment/Vine_Vege_01.glb" id="6_vx8ih"]
 [ext_resource type="PackedScene" uid="uid://cw6oseq76yaey" path="res://Assets/3D_Assets/Environment/Turret_Square_Bldg_02.glb" id="7_ugh17"]
+[ext_resource type="PackedScene" uid="uid://wtcswjxor0yd" path="res://UserInterface/currency_icon.tscn" id="7_vmy0u"]
 [ext_resource type="PackedScene" uid="uid://ohcrgbgjfv83" path="res://Assets/3D_Assets/Environment/House_Modular_01.glb" id="8_eabcg"]
+[ext_resource type="PackedScene" uid="uid://c38rfxhndin0q" path="res://UserInterface/armor_icon.tscn" id="8_jjxhf"]
 [ext_resource type="VoxelGIData" uid="uid://ccktq6u4oivg0" path="res://Levels/GIDaa/level.VoxelGI_data.res" id="9_t2u7g"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_wav5q"]
@@ -123,6 +126,19 @@ transform = Transform3D(-1.234152, 0, -0.40136644, 0, 1.7546474, 0, 0.19725929, 
 
 [node name="Large_Mountain_Env_023" parent="NavigationRegion3D/Horizon" instance=ExtResource("5_dvejp")]
 transform = Transform3D(0.011395633, 0, 0.9456871, 0, 0.88738996, 0, -0.6930605, 0, 0.0155493915, -123.12351, 0, -4.5387573)
+
+[node name="Interactable" type="Node3D" parent="NavigationRegion3D"]
+
+[node name="Chest" parent="NavigationRegion3D/Interactable" instance=ExtResource("6_3hgmi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9756765, 0, 0)
+
+[node name="CurrencyIcon" parent="NavigationRegion3D/Interactable/Chest" instance=ExtResource("7_vmy0u")]
+visible = false
+
+[node name="ArmorIcon" parent="NavigationRegion3D/Interactable/Chest" instance=ExtResource("8_jjxhf")]
+visible = false
+power = 10
+armor = 0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_5qy6j")

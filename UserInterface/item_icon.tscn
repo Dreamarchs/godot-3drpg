@@ -16,7 +16,7 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_vr876"]
 font = ExtResource("6_perhd")
-font_size = 15
+font_size = 13
 font_color = Color(0.9607843, 0.7490196, 0.4862745, 1)
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
@@ -57,7 +57,7 @@ grow_vertical = 2
 theme_override_constants/margin_left = 17
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 19
-theme_override_constants/margin_bottom = -8
+theme_override_constants/margin_bottom = 16
 
 [node name="StatLabel" type="Label" parent="MarginContainer"]
 layout_mode = 2
@@ -70,8 +70,7 @@ horizontal_alignment = 2
 [node name="ItemLabel" type="Label" parent="MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 1
-text = "Item Name
-"
+text = "Item Name"
 label_settings = SubResource("LabelSettings_vr876")
 horizontal_alignment = 1
 vertical_alignment = 2
