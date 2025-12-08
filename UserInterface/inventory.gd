@@ -1,4 +1,5 @@
 extends Control
+class_name Inventory
 
 @onready var speed_value: Label = %SpeedValue
 @onready var endurance_value: Label = %EnduranceValue
@@ -6,13 +7,13 @@ extends Control
 @onready var strength_value: Label = %StrengthValue
 @onready var level_value: Label = %LevelLabel
 @onready var attack_value: Label = %AttackValue
+@onready var item_grid: GridContainer = %ItemGrid
 
 @onready var player: Player = get_parent().player
 
 func _ready() -> void:
 	update_stats()
 	
-
 func update_stats() -> void:
 	strength_value.text = str(player.stats.strength.ability_score)
 	speed_value.text = str(player.stats.speed.ability_score)
@@ -30,3 +31,7 @@ func get_weapon_value() -> int:
 	
 func _on_back_button_pressed() -> void:
 	get_parent().close_menu()
+	
+func add_item(icon: ItemIcon) -> void:
+	icon.get_parent().remove_child(icon)
+	item_grid.add_child(icon)

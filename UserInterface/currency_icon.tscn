@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dyds2v5lhfokw" path="res://Assets/UIAssets/Icons/star_icon.png" id="2_otw35"]
 
 [node name="CurrencyIcon" instance=ExtResource("1_jvp7y")]
+visible = false
 script = ExtResource("2_bpspm")
 value = 53
 

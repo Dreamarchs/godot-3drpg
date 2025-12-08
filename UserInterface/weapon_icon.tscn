@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dxpkhkxv86x0o" path="res://Assets/3D_Assets/Character/Gear/Longsword.glb" id="3_s3awy"]
 
 [node name="WeaponIcon" instance=ExtResource("1_13dws")]
+visible = false
 script = ExtResource("2_5pjkh")
 power = 10
 item_model = ExtResource("3_s3awy")

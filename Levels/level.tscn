@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bj1vqq221h81e"]
+[gd_scene load_steps=26 format=3 uid="uid://bj1vqq221h81e"]
 
 [ext_resource type="PackedScene" uid="uid://lw8po7l0fp78" path="res://Player/player.tscn" id="1_s41d2"]
 [ext_resource type="PackedScene" uid="uid://dpjtrxa4r8h5j" path="res://Assets/3D_Assets/Environment/Path_Stepping_Stone_Env_01.glb" id="2_eabcg"]
@@ -15,7 +15,11 @@
 [ext_resource type="PackedScene" uid="uid://wtcswjxor0yd" path="res://UserInterface/currency_icon.tscn" id="7_vmy0u"]
 [ext_resource type="PackedScene" uid="uid://ohcrgbgjfv83" path="res://Assets/3D_Assets/Environment/House_Modular_01.glb" id="8_eabcg"]
 [ext_resource type="PackedScene" uid="uid://c38rfxhndin0q" path="res://UserInterface/armor_icon.tscn" id="8_jjxhf"]
+[ext_resource type="PackedScene" uid="uid://x7ljapmr3gc8" path="res://UserInterface/weapon_icon.tscn" id="9_jmcc3"]
 [ext_resource type="VoxelGIData" uid="uid://ccktq6u4oivg0" path="res://Levels/GIDaa/level.VoxelGI_data.res" id="9_t2u7g"]
+[ext_resource type="PackedScene" uid="uid://dj1cbwlis4aty" path="res://Assets/3D_Assets/Character/Gear/Battleaxe.glb" id="10_fw3l5"]
+[ext_resource type="PackedScene" uid="uid://cvntvjcsfmdmy" path="res://UserInterface/shield_icon.tscn" id="11_wjjle"]
+[ext_resource type="PackedScene" uid="uid://dv7t6uk4jun82" path="res://Assets/3D_Assets/Character/Gear/Tall_Shield.glb" id="12_1sae0"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_wav5q"]
 vertices = PackedVector3Array(-24.64, 0.5, -23.595, -24.64, 0.75, 22.405, 24.61, 0.5, 22.405, 24.61, 0.5, -23.595)
@@ -139,6 +143,16 @@ visible = false
 visible = false
 power = 10
 armor = 0
+
+[node name="Chest2" parent="NavigationRegion3D/Interactable" instance=ExtResource("6_3hgmi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.003574, 0, 13.139666)
+
+[node name="WeaponIcon" parent="NavigationRegion3D/Interactable/Chest2" instance=ExtResource("9_jmcc3")]
+item_model = ExtResource("10_fw3l5")
+
+[node name="ShieldIcon" parent="NavigationRegion3D/Interactable/Chest2" instance=ExtResource("11_wjjle")]
+protection = 10
+item_model = ExtResource("12_1sae0")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_5qy6j")
