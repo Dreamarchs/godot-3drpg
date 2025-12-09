@@ -37,5 +37,8 @@ func open(loot: LootContainer) -> void:
 
 func pickup_item(icon: ItemIcon) -> void:
 	icon.interact.disconnect(pickup_item)
-	print(icon)
-	inventory.add_item(icon)
+	if icon is CurrencyIcon:
+		inventory.add_currency(icon.value)
+		icon.queue_free()
+	else:
+		inventory.add_item(icon)
