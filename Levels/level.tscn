@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bj1vqq221h81e"]
+[gd_scene load_steps=28 format=3 uid="uid://bj1vqq221h81e"]
 
 [ext_resource type="PackedScene" uid="uid://lw8po7l0fp78" path="res://Player/player.tscn" id="1_s41d2"]
 [ext_resource type="PackedScene" uid="uid://dpjtrxa4r8h5j" path="res://Assets/3D_Assets/Environment/Path_Stepping_Stone_Env_01.glb" id="2_eabcg"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://dj1cbwlis4aty" path="res://Assets/3D_Assets/Character/Gear/Battleaxe.glb" id="10_fw3l5"]
 [ext_resource type="PackedScene" uid="uid://cvntvjcsfmdmy" path="res://UserInterface/shield_icon.tscn" id="11_wjjle"]
 [ext_resource type="PackedScene" uid="uid://dv7t6uk4jun82" path="res://Assets/3D_Assets/Character/Gear/Tall_Shield.glb" id="12_1sae0"]
+[ext_resource type="PackedScene" uid="uid://by7cajw112au6" path="res://Assets/3D_Assets/Character/Gear/Short_Shield.glb" id="12_wjjle"]
 [ext_resource type="PackedScene" uid="uid://bns7lh4wq2l4l" path="res://Assets/3D_Assets/Character/Gear/Broken_Sword.glb" id="13_fw3l5"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_wav5q"]
@@ -140,8 +141,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9756765, 0, 0)
 [node name="CurrencyIcon" parent="NavigationRegion3D/Interactable/Chest" instance=ExtResource("7_vmy0u")]
 
 [node name="ArmorIcon" parent="NavigationRegion3D/Interactable/Chest" instance=ExtResource("8_jjxhf")]
-power = 10
+protection = 10
 armor = 0
+
+[node name="ArmorIcon2" parent="NavigationRegion3D/Interactable/Chest" instance=ExtResource("8_jjxhf")]
+protection = 15
 
 [node name="Chest2" parent="NavigationRegion3D/Interactable" instance=ExtResource("6_3hgmi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.003574, 0, 13.139666)
@@ -150,8 +154,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.003574, 0, 13.139666)
 power = 8
 
 [node name="ShieldIcon" parent="NavigationRegion3D/Interactable/Chest2" instance=ExtResource("11_wjjle")]
-protection = 10
+protection = 60
 item_model = ExtResource("12_1sae0")
+
+[node name="ShieldIcon2" parent="NavigationRegion3D/Interactable/Chest2" instance=ExtResource("11_wjjle")]
+protection = 30
+item_model = ExtResource("12_wjjle")
 
 [node name="WeaponIcon2" parent="NavigationRegion3D/Interactable/Chest2" instance=ExtResource("9_jmcc3")]
 power = 12
@@ -160,6 +168,9 @@ item_model = ExtResource("10_fw3l5")
 [node name="WeaponIcon3" parent="NavigationRegion3D/Interactable/Chest2" instance=ExtResource("9_jmcc3")]
 power = 4
 item_model = ExtResource("13_fw3l5")
+
+[node name="ArmorIcon2" parent="NavigationRegion3D/Interactable/Chest2" instance=ExtResource("8_jjxhf")]
+protection = 15
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_5qy6j")

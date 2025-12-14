@@ -10,6 +10,9 @@ signal heavy_attack()
 @onready var shield_slot = %ShieldSlot
 @onready var weapon_slot = %WeaponSlot	
 
+@onready var knight_steel: MeshInstance3D = $Rig/GameRig/Skeleton3D/Knight_01
+@onready var knight_iron: MeshInstance3D = $Rig/GameRig/Skeleton3D/Knight_02
+
 @onready var villager_meshes: Array[MeshInstance3D] = [
 													  $Rig/GameRig/Skeleton3D/Villager_01,
 													  $Rig/GameRig/Skeleton3D/Villager_02
@@ -67,3 +70,12 @@ func replace_weapon(weapon_scene: PackedScene) -> void:
 		child.queue_free()
 	var new_weapon := weapon_scene.instantiate()
 	weapon_slot.add_child(new_weapon)
+
+func replace_armor(armor_type: ArmorIcon.armor_type) -> void:
+	match armor_type:
+		ArmorIcon.armor_type.IRON_PLATE:
+			set_active_mesh(knight_iron)
+		ArmorIcon.armor_type.STEEL_PLATE:
+			set_active_mesh(knight_steel)
+		_:
+			printerr("Armor Type invalid. ID: %s" % armor_type)
